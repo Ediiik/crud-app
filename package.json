@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "bootstrap": "^3.3.7",
     "notyf": "^2.0.1",
+    "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-scripts": "1.0.17"

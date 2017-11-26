@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Panel used for displaying details of a collection
+ * @param collection
+ * @param onClose
+ * @param onEdit
+ * @param onDelete
+ */
 const CollectionDetail = ({ collection, onClose, onEdit, onDelete }) => (
   <div className="panel panel-primary" id="detail">
     <div className="panel-heading">Post Details</div>
@@ -30,5 +38,12 @@ const CollectionDetail = ({ collection, onClose, onEdit, onDelete }) => (
     </div>
   </div>
 );
+
+CollectionDetail.propTypes = {
+  collection: PropTypes.object,
+  onClose: PropTypes.func,
+  onEdit: PropTypes.func,
+  onDelete: PropTypes.func
+};
 
 export default CollectionDetail;

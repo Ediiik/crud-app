@@ -1,5 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
+/**
+ * Panel used for editing a collection
+ * @param collection
+ * @param onEditCancel
+ * @param onSubmit
+ */
 const CollectionEdit = ({ collection, onEditCancel, onSubmit }) => (
   <div className="panel panel-primary">
     <div className="panel-heading">Edit Post</div>
@@ -18,5 +25,11 @@ const CollectionEdit = ({ collection, onEditCancel, onSubmit }) => (
     </form>
   </div>
 );
+
+CollectionEdit.propTypes = {
+  collection: PropTypes.object,
+  onEditCancel: PropTypes.func,
+  onSubmit: PropTypes.func
+};
 
 export default CollectionEdit;

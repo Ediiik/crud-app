@@ -1,5 +1,8 @@
 import React from 'react';
 
+/**
+ * Page header
+ */
 const Header = () => (
   <header>
     <nav className="navbar navbar-default">

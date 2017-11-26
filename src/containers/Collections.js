@@ -8,7 +8,14 @@ import CollectionEdit from './../components/CollectionEdit';
 
 import 'notyf/dist/notyf.min.css';
 
+/**
+ * Collection container component
+ */
 class Collection extends React.Component {
+  /**
+   * Constructor
+   * @param props
+   */
   constructor(props) {
     super(props);
 
@@ -29,9 +36,14 @@ class Collection extends React.Component {
   componentDidMount() {
     this.fetchData()
       .then(this.generateCollections.bind(this))
+      .then((state) => this.setState(state))
       .catch(() => this.notyf.alert('There was a problem fetching the data.'));
   }
 
+  /**
+   * Fetches data from 3 resources and returns a Promise containing the data
+   * @return {Promise.<*>}
+   */
   fetchData() {
     return Promise.all([
       axios.get(`${this.api}/users`),
@@ -40,6 +52,13 @@ class Collection extends React.Component {
     ]);
   }
 
+  /**
+   * Generates an array of collections containing random items from each resource
+   * @param users
+   * @param posts
+   * @param albums
+   * @return {{collections: Array, loading: boolean}}
+   */
   generateCollections([{ data: users }, { data: posts }, { data: albums }]) {
     const collections = [];
 
@@ -55,9 +74,13 @@ class Collection extends React.Component {
       });
     }
 
-    this.setState({ collections, loading: false });
+    return { collections, loading: false };
   }
 
+  /**
+   * Patches the state with a new post title
+   * @param payload
+   */
   handleSubmit(payload) {
     this.setState((prevState) => {
       const state = JSON.parse(JSON.stringify(prevState));
@@ -67,6 +90,9 @@ class Collection extends React.Component {
     });
   }
 
+  /**
+   * Deletes a collection from state
+   */
   handleDelete() {
     if (! window.confirm('Are you sure?')) {
       return;
@@ -79,18 +105,31 @@ class Collection extends React.Component {
     });
   }
 
+  /**
+   * Enters editation mode
+   */
   handleEdit() {
     this.setState({ editing: true });
   }
 
+  /**
+   * Exits editaion mode
+   */
   handleEditCancel() {
     this.setState({ editing: false });
   }
 
+  /**
+   * Deselects a collection
+   */
   handleClose() {
     this.setState({ selected: null, editing: false });
   }
 
+  /**
+   * Selects a collection
+   * @param index
+   */
   handleSelect(index) {
     this.setState({ selected: index, editing: false });
   }
